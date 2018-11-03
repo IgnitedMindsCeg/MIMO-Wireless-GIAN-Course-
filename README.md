@@ -1,1 +1,4 @@
-# MIMO-Wireless-GIAN-Course-
+Multi-Input Multi-Output (MIMO) technology is a key technology in modern wireless systems. MIMO uses multiple antennas at both transmitter and receiver along with transmit encoding and receiver decoding to improve data throughput and range without any penalty of bandwidth or transmit power. MIMO technology is currently used in 4G mobile systems and WiFi and is essential to all future broadband wireless systems. MIMO is a rapidly developing technology with well over 10,000 papers as well as patents and vast global product development activities. 
+This course on MIMO technology is aimed at graduate and research students, faculty members and R&D engineers in industry. The primary objective of this course is to condense the key concepts of MIMO technology with emphasis on fundamental concepts, to develop a grasp of the basic mathematics underlying MIMO and to bring understanding of the usage of MIMO in current and future wireless systems.
+
+Course participants will learn these topics through lectures, simulation assignments and tutorials. 
