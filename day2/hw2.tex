@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{amssymb,amsmath}
+
+%\usepackage{doublespace}
+
+\textheight 23cm \topmargin -1cm \leftmargin 0cm
+
+\marginparwidth 0mm    % Largeur des notes marge de droite
+\textwidth 16.5cm      % Largeur du texte
+\hsize \textwidth      % Longueur d'une ligne
+\advance \hsize by -\marginparwidth
+\oddsidemargin -4mm    % Marge gauche pages de droite - 1 inch (2.54 cm)
+\evensidemargin \oddsidemargin % Idem pour les pages de gauche
+
+\advance\hoffset by 5mm % Pour corriger un decalage residuel sur la gauche
+
+\renewcommand{\hat}{\widehat}
+\newcommand{\R}{\mathrm{I\!R\!}}
+\newcommand{\C}{\mathrm{I\!\!\!C\!}}
+\newcommand{\sinc}{\mbox{sinc}}
+\newcommand{\diag}{\mbox{diag}}
+\newcommand{\Tr}{\mbox{Tr}}
+
+% commands
+\newtheorem{theo}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newcommand{\nc}{\newcommand}
+\nc{\RR}{\mbox{\rm I$\!$R}} \nc{\dsp}{\displaystyle}
+\nc{\Div}{\mbox{\rm div }} \nc{\beequ}{\begin{equation}}
+\nc{\barr}{\begin{array}} \nc{\earr}{\end{array}}
+\nc{\eequ}{\end{equation}} \nc{\BFF}{\hbox{\boldmath{${\cal
+F}$}}^{(j)}({\bf y}^s,t)}
+
+\nc{\hr}{\widehat{r}} \nc{\hh}{\widehat{h}} \nc{\hs}{\widehat{s}}
+\nc{\hn}{\widehat{n}} \nc{\hw}{\widehat{w}} \nc{\hd}{\widehat{d}}
+\nc{\hG}{\widehat{\Gamma}} \nc{\om}{\omega} \nc{\yy}{{\bf y}}
+\nc{\ys}{{\bf y}^s} \nc{\yo}{{\bf y}_0} \nc{\xp}{{\bf x}_p}
+\nc{\xr}{{\bf x}_r} \nc{\co}{{\cal O}}
+\renewcommand\labelenumi{\alph{enumi})}
+\begin{document}
+\hfill August 9, 2016
+
+\begin{center}
+{\Large \textbf{MIMO Wireless}}
+\\
+
+\textbf{Practice Set 2 }
+%\textbf{Due: Thursday January 21, 2010, in-class}
+\end{center}
+\paragraph{Problem 1} 
+For the given channel vector {\bf H} calculate capacity for SIMO and MISO with $E_S/N_0=20dB$.
+\begin{eqnarray*}
+{\bf H} &=& \left[
+\begin{array}{cc}
+0.5464 + 0.2294i \\
+-1.2666 + 0.2736i  
+\end{array}
+\right]
+\end{eqnarray*} 
+
+\paragraph{Problem 2} 
+For the given channel Matrix {\bf H} calculate capacity for MIMO 2X2 Channel with $E_S/N_0=25dB$.
+\begin{eqnarray*}
+{\bf H} &=& \left[
+\begin{array}{cccc}
+-0.8256 + 0.8831i & 0.8025 + 0.4420i \\
+-0.2678 + 0.3977i & 1.2196 - 0.0895i
+\end{array}
+\right]
+\end{eqnarray*}
+
+\paragraph{Problem 3} 
+Compare the CDF for 2X2 and 4X4 MIMO channel. 
+
+\paragraph{Problem 4} 
+Plot the SNR Vs Capacity curve and compare with the following links.
+\begin{enumerate}
+	\item 1X2 SIMO
+	\item 2X1 MISO
+	\item 2X2 MIMO
+\end{enumerate}
+\paragraph{Problem 5} 
+Compare the correlated and iid channel impact in capacity.
+\paragraph{Problem 6} 
+Analyze the impact of LOS in capacity.
+\paragraph{Problem 7} 
+Check the orthogonality of the following matrix.
+\begin{eqnarray*}
+{\bf X} &=& \left[
+\begin{array}{cccc}
+1+j & 1+j \\
+-1+j & 1-j
+\end{array}
+\right]
+\end{eqnarray*}
+\paragraph{Problem 8} 
+Lets the Transmit symbol vector $\tilde{{\bf X}} = [1 + j,-1 + j]$. For 2X1 MISO system with channels of $h_1=0.2362 - 1.0244j$ and $h_2=-0.3048 + 0.2587j$, perform transmit and receive operations using the Alamouti scheme.
+
+\paragraph{Problem 9} {\it (MISO array gain)} \quad
+Consider a MISO channel $ y = \mathbf H \mathbf x + n$ with two transmit antennas, channel matrix $\mathbf H = [h_1,h_2]$, and noise power $\mathcal E(\lvert n \rvert^2)=N_0$. The total available transmit power over all antennas is $P$ ($\mathcal E[\mathbf x^H \mathbf x]\leq P$).  Suppose we want to transmit the zero-mean, unit variance random signal $s$. 
+\begin{enumerate}
+\item Assume $h_1=h_2=1$. For simplicity, we decide to transmit $s$ directly from both antennas using $\mathbf x = a [s,s]^T$, with appropriate scaling factor $a>0$. Find $a$ that maximizes receiver signal to noise ratio $\mathrm{SNR}_\text{MISO}$. Compare this to the achievable signal to noise ratio $\mathrm{SNR}_\text{SISO}$ in a SISO system with channel gain $H=1$ and the same power constraint. Compute the \emph{transmit array gain}, i.e., the SNR difference in dB between MISO and SISO.
+\item What is the array gain if $h_1=h_2=-1$ and $\mathbf x = a [s,s]^T$?
+\item Now let $h_1=1$ and $h_2=-1$. Find the array gain with $\mathbf x = a [s,s]^T$. Find $(a_1,a_2)$ such that $\mathbf x = s[a_1,a_2]^T$ maximizes array gain. What does this imply about the role of CSIT for transmit array gain?
+\end{enumerate}
+
+%\clearpage
+
+
+
+\paragraph{Problem 10} {\it (Singular Values of $\mathbf H$) } 
+\begin{enumerate}
+\item Generate 10,000 ZMCSCG channels of dimensions $4 \times 4 $ and plot the empirical probability density function (pdf) of the minimum eigenvalue of ${\bf H H}^H$.
+\item In the lecture notes, an analytical expression is given for this pdf. Plot this analytical expression in the same diagram to verify that the distribution of part (a) matches the theory. 
+\item What significance does this have for the capacity of a MIMO system?
+\end{enumerate}
+
+
+\end{document}

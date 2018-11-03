@@ -1,0 +1,161 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{amssymb,amsmath}
+
+%\usepackage{doublespace}
+
+\textheight 23cm \topmargin -1cm \leftmargin 0cm
+
+\marginparwidth 0mm    % Largeur des notes marge de droite
+\textwidth 16.5cm      % Largeur du texte
+\hsize \textwidth      % Longueur d'une ligne
+\advance \hsize by -\marginparwidth
+\oddsidemargin -4mm    % Marge gauche pages de droite - 1 inch (2.54 cm)
+\evensidemargin \oddsidemargin % Idem pour les pages de gauche
+
+\advance\hoffset by 5mm % Pour corriger un decalage residuel sur la gauche
+
+\renewcommand{\hat}{\widehat}
+\newcommand{\R}{\mathrm{I\!R\!}}
+\newcommand{\C}{\mathrm{I\!\!\!C\!}}
+\newcommand{\sinc}{\mbox{sinc}}
+\newcommand{\diag}{\mbox{diag}}
+\newcommand{\Tr}{\mbox{Tr}}
+
+% commands
+\newtheorem{theo}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newcommand{\nc}{\newcommand}
+\nc{\RR}{\mbox{\rm I$\!$R}} \nc{\dsp}{\displaystyle}
+\nc{\Div}{\mbox{\rm div }} \nc{\beequ}{\begin{equation}}
+\nc{\barr}{\begin{array}} \nc{\earr}{\end{array}}
+\nc{\eequ}{\end{equation}} \nc{\BFF}{\hbox{\boldmath{${\cal
+F}$}}^{(j)}({\bf y}^s,t)}
+
+\nc{\hr}{\widehat{r}} \nc{\hh}{\widehat{h}} \nc{\hs}{\widehat{s}}
+\nc{\hn}{\widehat{n}} \nc{\hw}{\widehat{w}} \nc{\hd}{\widehat{d}}
+\nc{\hG}{\widehat{\Gamma}} \nc{\om}{\omega} \nc{\yy}{{\bf y}}
+\nc{\ys}{{\bf y}^s} \nc{\yo}{{\bf y}_0} \nc{\xp}{{\bf x}_p}
+\nc{\xr}{{\bf x}_r} \nc{\co}{{\cal O}}
+\renewcommand\labelenumi{\alph{enumi})}
+\begin{document}
+\hfill August 11, 2016
+
+\begin{center}
+{\Large \textbf{MIMO Wireless}}
+\\
+
+\textbf{Practice Set 4 }
+%\textbf{Due: Thursday January 21, 2010, in-class}
+\end{center}
+\paragraph{Problem 1} 
+Consider a $2 \times 1$ MISO channel.  For each case, state the capacity-optimal transmit covariance matrix $\pmb \Sigma$.  Assume a transmit power constraint of $P$.
+\begin{enumerate}
+\item The transmitter has no channel state information.
+\item The transmitter knows the magnitude channel gains $|h_1|$ and $|h_2|$, but does not know the channel phase information.
+\item The channel $[h_1, h_2]$ is known exactly to the transmitter.
+\end{enumerate}
+
+
+\paragraph{Problem 2} 
+Consider a  $2 \times 2$ MIMO transmission channel without channel state information at the transmitter. 
+
+\begin{enumerate}
+\item Assuming Rayleigh fading with Kronecker channel correlation, plot ergodic capacity over $\mathrm{SNR}$ for
+\begin{align*}
+	\mathbf R_t &= \mathbf I &
+	\mathbf R_r &= \begin{bmatrix}
+			1 & \rho \\
+			\rho & 1
+		\end{bmatrix},
+\end{align*}
+and $\rho \in \{0, 0.2, 0.8\}$.
+\item Assuming uncorrelated Ricean fading, plot ergodic capacity over $\mathrm{SNR}$ for $K$-factors of $0$, $1$, and $10$. Assume that the fixed part of the channel is given by
+\[
+\overline{ \bf H}=\left[\begin{array}{cc}
+1 & 1\\
+1 & 1\end{array}\right]
+\]
+\end{enumerate}
+
+\paragraph{Problem 3}{\it Alamouti Code and Channel Estimation Errors}\\
+The Alamouti code uses an estimate of the channel to perform ML decoding. In this question, we will study the effect of channel estimation errors. Assume we have a $2 \times 1$ MISO system with Alamouti space-time coding and we model the channel as
+\begin{equation*}
+{\bf h} = \begin{bmatrix} h_1 + \epsilon_1 ,& h_2 + \epsilon_2 \end{bmatrix}
+\end{equation*}
+where $\epsilon_1$ and $\epsilon_2$ are ZMCSCG variables with variance $\sigma_{\epsilon}$.  After Alamouti receiver processing (using $h_1$ and $h_2$), the received signal can be modeled as
+\begin{equation*}
+{\bf \hat{y}} = {\bf \tilde{y}}_{signal} + {\bf \tilde{y}}_{mismatch} + {\bf \tilde{n}}
+\end{equation*}
+\begin{enumerate}
+\item Derive expressions for the three terms ${\bf \tilde{y}}_{signal}$, ${\bf \tilde{y}}_{mismatch}$, and ${\bf \tilde{n}}$. 
+\item How can we characterize the main diagonal and off-diagonal terms in the expression for ${\bf \tilde y}_{mismatch}$? 
+\item  Based on your results from (a) derive an expression for the SNR assuming input energy $E_s$ and noise variance $N_0$.
+
+\item  Using the following parameters, plot the BER for Alamouti Coding.% ( No error, error)\\
+% - Maximum Ratio Combining (No error, error)
+\begin{itemize}
+\item SNR = 15 dB
+\item Modulation = BPSK
+\item Decoder - Binary ML detector (Simple slicing)
+\item Channel - $1 \times 2$ ZMCSCG MISO channel %(AC)
+%\item Channel -  $2 \times 1$ ZMCSCG SIMO channel (MRC)
+\item Estimation error, ZMCSCG variable with variance from 0 to 1 in steps of 0.1
+\end{itemize}
+What conclusions can be drawn from from your plots?
+
+\end{enumerate}
+
+
+\paragraph{Problem 4}
+{\it Spatial Multiplexing}\\
+In this problem, we consider the per stream mutual information for horizontal and diagonal encoding.  Consider a MIMO channel with $M_t=M_r=2$ with perfect CSI at the receiver and no channel state information at the transmitter.  The channel input-output equation is given as
+\begin{equation*}
+\mathbf y=\mathbf H\mathbf x+\mathbf n
+\end{equation*}
+where $\mathbf x\in C^{M_t}$ is the input vector, $\mathbf H\in C^{M_r\times M_t}$ is the channel, $\mathbf n\in C^{M_r}$ is the thermal noise, and $\mathbf y\in C^{M_r}$ is the output vector.  The transmitter has a power constraint of $E_s$ and the thermal noise at the receiver is distributed as $\mathcal{CN}(0,\sigma^2\mathbf I_{M_r})$.  Assume a linear zero-forcing receiver. Next, let us suppose that the channel (unknown to the transmitter) is randomly selected to be
+\begin{equation*}
+\mathbf H=\left[ \begin{array}{cc}
+1 & 0.5+i \\
+-0.25 & -i\\
+\end{array} \right].
+\end{equation*}
+
+\begin{enumerate}
+\item  First, suppose that horizontal encoding with successive cancellation is used on this channel.  First we decode the data stream transmitted from the first antenna while treating the stream from the second antenna as noise.  After successful detection, subtract the first stream and decode the second stream with only thermal noise.  What is the mutual information of each of the two streams when decoded in this way?
+
+
+\item  Now, suppose that diagonal encoding is used with two streams (illustrated below).  Each stream will spend an equal amount of time being transmitted from each antenna.  The first stream is decoded treating the second stream as noise and the second stream is decoded with only thermal noise.  What are the mutual informations of the two streams in this case?
+\begin{equation*}
+\left[ \begin{array}{ccc}
+S_{11} & S_{21} & 0\\
+0 & S_{12} & S_{22}
+\end{array} \right ]
+\end{equation*}
+Here, $S_{11}$ is the first half of the output of the first stream, $S_{12}$ is the second half of the output of the first stream. $S_{21}$ is the first half of the output of the second stream, $S_{22}$ is the second half of the output of the second stream.
+\end{enumerate}
+\paragraph{Problem 5} {\it (Channel correlations) } \quad
+Consider a $2\times 2$ MIMO channel and recall that ${\bf R}=\mathcal{E}(\mathrm{vec}(\mathbf H)\mathrm{vec}(\mathbf H)^T)$.  While the   matrix ${\bf R}$ is the most general way to capture channel correlation, it is often difficult to work with.  Instead, the Kronecker model $\mathbf H={\bf R}_R^{1/2}\mathbf H_w{\bf R}_T^{1/2}$ is often used, where the entries of $\mathbf H_w$ are iid ZMCSCG.  In this problem, we consider the underlying assumptions of the Kronecker model.  Let us assume 
+\begin{equation*}
+{\bf R}_T =\left[ \begin{array}{cc}
+ 1 & \alpha\\
+\alpha^* & 1
+\end{array} \right]
+\textrm{ and }
+{\bf R}_R =\left[ \begin{array}{cc}
+ 1 & \beta\\
+\beta^* & 1
+\end{array} \right]
+\end{equation*}
+
+\begin{enumerate}
+\item Compute ${\bf R}= {\bf R}_T^T \otimes {\bf R}_R$.
+\item How does the correlation between two transmit antennas depend on the choice of receive antenna?  How does the correlation between two receive antennas depend on the choice of transmit antenna?  What can you say about the physical properties of the random channel $H$ for this identity to hold?
+\end{enumerate}
+
+
+
+\end{document}
